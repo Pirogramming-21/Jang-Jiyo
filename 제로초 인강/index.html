@@ -72,19 +72,25 @@
             display: inline-block;
         }
         #header-hamburger {
-            margin-top: 18px;
+            position: absolute;
+            top: 18px;
+            left: 25px;
             padding: 10px;
             display: inline-block;
             background: none;
             border: none;
             cursor: pointer;
         }
-        #header-hamburger:hover {
+        #header-hamburger:hover::before {
+            position: absolute;
+            content: '';
+            left: -2px;
+            top: -2px;
+            width: 44px;
+            height: 44px;
             background-color: var(--color_option_bg);
             border-radius: 50%;
-        }
-        #header {
-            text-align: left;
+            padding: 9px;
         }
         #header-hamburger > div {
             background-image: url(./sp_main.png);
@@ -93,6 +99,10 @@
             background-size: 442px 434px;
             background-position: -326px -161px;
             background-repeat: no-repeat;
+        }
+        #header {
+            text-align: left;
+            position: releative;
         }
         #main {
             height: 2000px;

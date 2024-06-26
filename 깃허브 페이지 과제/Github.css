@@ -184,6 +184,10 @@ html, body {
     padding-left: 10px;
     outline: none;
 }
+#signup-box-grid input:focus {
+    border-color: #3fB950;
+    filter: drop-shadow(0 0 0.1rem #3fB950); 
+}
 
 #main-right-text1, #main-right-text2 {
     max-width: 480px;

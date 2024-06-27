@@ -1,0 +1,9 @@
+:root {
+    --gutter: 1.6rem;
+    --offset: 4rem;
+    --green: #0bec12;
+    --gray: #333333;
+    --gray-trans: rgba(236, 236, 236, 0.466);
+    --blue: #2188b6;
+    --header-height: 9rem;
+  }

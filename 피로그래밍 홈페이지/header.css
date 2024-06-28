@@ -2,11 +2,16 @@
     font-family: "Nexon";
     src: url("./NEXONLv1GothicRegular.ttf");
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     background-color: black;
     color: white;
     font-family: "Nexon";
-    height: 1220px;
+    height: 100vh;
 }
 main {
     height: 1220px;

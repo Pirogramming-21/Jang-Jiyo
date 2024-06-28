@@ -1,14 +1,14 @@
-.main-header-container > ul > li:nth-of-type(3) {
+.main-header-container > ul > li:nth-of-type(4) {
     color: var(--green);
 }
 
-#portfolio {
+#interview {
     margin-bottom: 50px;
     height: auto;
     display: flex;
     justify-content: center;
 }
-.main-port-container {
+.main-interview-container {
     width: min(100%, 1200px);
     display: flex;
     flex-direction: column;
@@ -24,7 +24,6 @@
     font-size: 1.8rem;
     margin-bottom: var(--gutter);
 }
-
 .main-choose > h1 {
     font-size: 2.2rem;
 }
@@ -46,66 +45,67 @@
     transform: translateY(-50%) rotate(45deg);
 }
 
+#interview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
 .container {
-    width: 100%;
-    display: flex;
     background-color: var(--gray);
     border-radius: 10px;
     padding: 16px;
-    margin-bottom: var(--gutter);
     position: relative;
     transition: 0.3s;
 }
 
+.interview-intro {
+    display: flex;
+    gap: 15px;
+}
+
 .image {
-    background-color: white;
-    border-radius: 10px;
-    width: 150px;
-    height: 110px;
-    margin-right: var(--gutter);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
     overflow: hidden;
+    text-align: center;
 }
 .image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 1rem 2rem;
+    object-fit: cover;
     transition: 0.3s;
 }
 
-.content {
-    width: auto;
-    height: 100px;
-    padding: 5px 0;
+.name {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
 }
-
-.pj-name {
-    font-size: 2.2rem;
-    font-weight: bold;
+.name p {
+    font-size: 1.8rem;
     margin-bottom: 10px;
 }
-.pj-content {
-    font-size: 1.6rem;
-    color: #c6c6c6;
-    margin-bottom: 25px;
-}
-
-.content ul {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.content div {
+.name div {
     font-size: 1.4rem;
-    color: black;
-    background-color: var(--gray-trans);
     padding: 6px 8px;
     border-radius: 5px;
 }
-#PM {
+.name .no {
+    background-color: var(--red);
+}
+.name .yes {
     background-color: var(--blue);
-    color: white;
+}
+.name .both {
+    background-color: #35a67b;
+}
+
+.interview-saying {
+    font-size: 1.6rem;
+    padding-top: 16px;
+
 }
 
 .container > .more {
@@ -116,13 +116,14 @@
     justify-content: space-between;
     position: absolute;
     right: 15px;
+    top: 15px;
 }
 
 .more div {
     width: 20px;
     height: 2px;
     background-color: var(--gray-trans);
-    margin-bottom: 4px;
+    margin-top: 4px;
     transition: 0.3s;
 }
 .more div:nth-of-type(3) {
@@ -132,7 +133,7 @@
 .container:hover {
     transform: translateY(-5px);
 }
-.container:hover > .image img {
+.container:hover > .interview-intro > .image img {
     transform: scale(1.1);
 }
 .container:hover > .more div:nth-of-type(1) {

@@ -56,10 +56,10 @@
     }
     .sidebar {
         width: 250px;
-        height: calc(100vh - var(--header-height));
+        height: 100vh;
         position: fixed;
         background-color: #333333;
-        top: var(--header-height);
+        top: 60px;
         right: -300px;
         transition: 0.3s;
         padding: calc(130px - var(--header-height)) 40px;
@@ -74,9 +74,22 @@
     .sidebar > ul > li {
         font-size: 1.8rem;
     }
-
+    .sidebar-rest {
+        background-color: rgba(0, 0, 0, .6);
+        width: 100%;
+        height: 100vh;
+        opacity: 0;
+        position: fixed;
+        left: 0;
+        z-index: -1;
+        transition: 0.3s;
+        padding: calc(130px - var(--header-height)) 40px;
+    }
     #hamburger-icon > input[type="checkbox"]:checked ~ .sidebar {
         right: 0;
+    }
+    #hamburger-icon > input[type="checkbox"]:checked ~ .sidebar-rest {
+        opacity: 1;
     }
 }
 @media screen and (max-width: 770px) {

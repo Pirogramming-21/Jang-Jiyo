@@ -12,6 +12,7 @@ body {
     color: white;
     font-family: "Nexon";
     height: 100vh;
+/*     padding-top: 90px; */
 }
 main {
     height: 1220px;
@@ -22,6 +23,10 @@ main {
     justify-content: center;
     align-items: center;
     height: var(--header-height);
+    background: linear-gradient(black 80%, transparent);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .main-header-container {

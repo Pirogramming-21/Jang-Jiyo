@@ -50,6 +50,7 @@
 .menu li {
     padding: 0 2rem;
     position: relative;
+    margin-top: 1rem;
 }
 .menu li:before {
     content: '';
@@ -68,4 +69,11 @@
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
+}
+
+.nav-footer-container > ul > li {
+    transition: 0.1s;
+}
+.nav-footer-container > ul > li:hover {
+    transform: translateY(-3px);
 }

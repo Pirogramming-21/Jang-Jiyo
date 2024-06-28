@@ -48,6 +48,10 @@ main {
     gap: 2rem;
 }
 
+.main-header-container > ul > li {
+    transition: 0.1s;
+}
+
 .main-header-container > ul > li:hover {
-    color: var(--green);
+    transform: translateY(-3px);
 }

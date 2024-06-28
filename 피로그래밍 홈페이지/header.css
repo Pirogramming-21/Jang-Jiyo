@@ -1,7 +1,12 @@
+@font-face {
+    font-family: "Nexon";
+    src: url("./NEXONLv1GothicRegular.ttf");
+}
 body {
     background-color: black;
     color: white;
-    font-family: "Nexon", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-family: "Nexon";
+    height: 1220px;
 }
 main {
     height: 1220px;
@@ -23,8 +28,8 @@ main {
 }
 
 .main-header-container img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 .main-header-container > ul {

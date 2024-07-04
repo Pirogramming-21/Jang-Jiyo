@@ -1,12 +1,15 @@
 # 예외 처리 함수
-# 1. 데이터 입력 갯수
+# 1. 잘못된 데이터 개수 입력
 class WrongInputNum(Exception):
    pass
 # 2. 이미 존재하는 이름
 class ExistName(Exception):
    pass
-# 3. 입력 점수 값이 양의 정수인지
+# 3. 입력 점수 값이 양의 정수가 아님
 class NegativeScore(Exception):
+   pass
+# 4. 저장된 학생 정보 없음
+class NoStudentData(Exception):
    pass
 
 # 학생 정보를 저장할 리스트
@@ -19,16 +22,28 @@ def Menu1(name, mid-score, final-score) :
    studentList.append(student)
 
 ##############  menu 2
-def Menu2(#매개변수가 필요한지 판단 후 코딩할 것) :
-    #학점 부여 하는 코딩
+def Menu2() :
+   # 학점 부여 하는 코딩
+   for student in studentList:
+      if len(student) != 4:
+         avg-score = (student[1] + student[2]) / 2
+         if avg-score >= 90:
+            student[4] = 'A'
+         else if avg-score >= 80:
+            student[4] = 'B'
+         else if avg-score >= 70:
+            student[4] = 'C'
+         else:
+            student[4] = 'D'
+
 
 ##############  menu 3
 def Menu3(#매개변수가 필요한지 판단 후 코딩할 것) :
-    #출력 코딩
+   #출력 코딩
 
 ##############  menu 4
 def Menu4(#매개변수가 필요한지 판단 후 코딩할 것):
-    #학생 정보 삭제하는 코딩
+   #학생 정보 삭제하는 코딩
 
 #학생 정보를 저장할 변수 초기화
 print("*Menu*******************************")
@@ -41,40 +56,47 @@ print("*************************************")
 while True :
    choice = input("Choose menu 1, 2, 3, 4, 5 : ")
    if choice == "1":
-      #학생 정보 입력받기
-      #예외사항 처리(데이터 입력 갯수, 이미 존재하는 이름, 입력 점수 값이 양의 정수인지)
+      # 학생 정보 입력받기
+      # 예외사항 처리(데이터 입력 갯수, 이미 존재하는 이름, 입력 점수 값이 양의 정수인지)
       try:
          input_line = input("Enter name mid-score final-score : ")
          data = input_line.split()
          name = data[0]
          # 데이터 입력 갯수 예외 처리
-         if (len(data) != 3):
-            raise WrongInputNum("Invalid number of data inputs")
+         if len(data) != 3:
+            raise WrongInputNum("Invalid Number of Data Inputs")
          # 이미 존재하는 이름 예외 처리
          for student in studentList:
             if name == student[0]:
-               raise ExistName("Name that already exists")
+               raise ExistName("Name that already Exists")
          # 입력 점수 값 양의 정수 아닐 경우 예외처리
          id-score, final-score = map(int, data[1:])
-         if (mid-score <= 0 or final-score <= 0):
-            raise NegativeScore("Negative score value")
+         if mid-score <= 0 or final-score <= 0:
+            raise NegativeScore("Negative Score Value")
       except ValueError:
-         print("Non-Integer score value")
+         print("Non-Integer Score Value")
       except NegativeScore as e:
          print(e)
       except WrongInputNum as e:
          print(e)
       except ExistName as e:
          print(e)
-
-      #예외사항이 아닌 입력인 경우 1번 함수 호출
+      # 예외사항이 아닌 입력인 경우 1번 함수 호출
       else:
          Menu1(name, mid-score, final-score)
 
    elif choice == "2" :
-      #예외사항 처리(저장된 학생 정보의 유무)
-      #예외사항이 아닌 경우 2번 함수 호출
-      #"Grading to all students." 출력
+      # 예외사항 처리(저장된 학생 정보의 유무)
+      try:
+         if len(studnetList) == 0:
+            raise NoStudentData("No Student Data Saved")
+      except NoStudentData:
+         print(e)
+      # 예외사항이 아닌 경우 2번 함수 호출
+      else:
+         Menu2()
+         # "Grading to all students." 출력
+         print("Granding to all studnets.")
 
    elif choice == "3" :
       #예외사항 처리(저장된 학생 정보의 유무, 저장되어 있는 학생들의 학점이 모두 부여되어 있는지)

@@ -16,7 +16,6 @@ const selectIndex = (totalIndex, selectingNumber) => {
    return randomIndexArray;
 }
 const ansNum = selectIndex(10, 3);
-console.log(ansNum);
 
 // html의 input과 결과창의 내용 비우기
 const inputNum1 = document.getElementById('number1');
@@ -32,7 +31,7 @@ function resetInput() {
 resetInput();
 resultDisplay.innerText = '';
 
-/*** 숫자 확인 ***/
+// 결과창 출력 함수
 function gameResult(flag) {
    const gameResultContent = document.querySelector('.game-result');
    const gameResultImg = document.createElement("img");
@@ -50,6 +49,7 @@ function gameResult(flag) {
    submitBtn.disabled = true;
 }
 
+/*** 숫자 확인 ***/
 function check_numbers() {
    // 입력되지 않은 input이 있을 때
    if (inputNum1.value == '' || inputNum2.value == '' || inputNum3.value == '') {

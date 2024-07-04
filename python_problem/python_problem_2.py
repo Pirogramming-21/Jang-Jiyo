@@ -14,6 +14,9 @@ class NoStudentData(Exception):
 # 5. 저장되어 있는 학생의 학점이 부여되지 않음
 class NoGrade(Exception):
    pass
+# 6. 존재하지 않는 이름
+class NoExistName(Exception):
+   pass
 
 # 학생 정보를 저장할 리스트
 studentList = []
@@ -39,7 +42,6 @@ def Menu2() :
          else:
             student[3] = 'D'
 
-
 ##############  menu 3
 def Menu3() :
    # 출력 코딩
@@ -50,8 +52,11 @@ def Menu3() :
       print(f"{student[0]}  {studnet[1]}  {student[2]}  {student[3]}")
 
 ##############  menu 4
-def Menu4(#매개변수가 필요한지 판단 후 코딩할 것):
-   #학생 정보 삭제하는 코딩
+def Menu4(targetName):
+   # 학생 정보 삭제하는 코딩
+   for student in studentList:
+      if student[0] == targetName:
+         studentList.remove(student)
 
 #학생 정보를 저장할 변수 초기화
 print("*Menu*******************************")
@@ -123,10 +128,30 @@ while True :
          Menu3()
 
    elif choice == "4" :
-      #예외사항 처리(저장된 학생 정보의 유무)
-      #예외사항이 아닌 경우, 삭제할 학생 이름 입력 받기
-      #입력 받은 학생의 존재 유무 체크 후, 없으면 "Not exist name!" 출력
-      #있으면(예를 들어 kim 이라 하면), 4번 함수 호출 후에 "kim student information is deleted." 출력
+      # 예외사항 처리(저장된 학생 정보의 유무)
+      try:
+         if len(studnetList) == 0:
+            raise NoStudentData("No Student Data Saved")
+      except NoStudentData as e:
+         print(e)
+      # 예외사항이 아닌 경우, 삭제할 학생 이름 입력 받기
+      else:
+         # 입력 받은 학생의 존재 유무 체크 후, 없으면 "Not exist name!" 출력
+         name = input("Enter the name to delete : ")
+         try:
+            flag = 0
+            for student in studentList:
+               if student[0] == name:
+                  flag = 1
+                  break
+            if flag == 0:
+               raise NoExistName("Not exist name!")
+         except NoExistName as e:
+            print(e)
+         # 있으면(예를 들어 kim 이라 하면), 4번 함수 호출 후에 "kim student information is deleted." 출력
+         else:
+            menu4(name)
+            print(f"{name} student information is deleted.")
 
    elif choice == "5" :
       #프로그램 종료 메세지 출력

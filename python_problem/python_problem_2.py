@@ -22,9 +22,9 @@ class NoExistName(Exception):
 studentList = []
 
 ##############  menu 1
-def Menu1(name, mid-score, final-score) :
+def Menu1(name, midScore, finalScore) :
    # 사전에 학생 정보 저장하는 코딩
-   student = [name, mid-score, final-score]
+   student = [name, midScore, finalScore]
    studentList.append(student)
 
 ##############  menu 2
@@ -32,15 +32,15 @@ def Menu2() :
    # 학점 부여 하는 코딩
    for student in studentList:
       if len(student) != 4:
-         avg-score = (student[1] + student[2]) / 2
-         if avg-score >= 90:
-            student[3] = 'A'
-         else if avg-score >= 80:
-            student[3] = 'B'
-         else if avg-score >= 70:
-            student[3] = 'C'
+         avgScore = (student[1] + student[2]) / 2
+         if avgScore >= 90:
+            student.append('A')
+         elif avgScore >= 80:
+            student.append('B')
+         elif avgScore >= 70:
+            student.append('C')
          else:
-            student[3] = 'D'
+            student.append('D')
 
 ##############  menu 3
 def Menu3() :
@@ -48,8 +48,8 @@ def Menu3() :
    print("--------------------------")
    print("name  mid  final  grade")
    print("--------------------------")
-   for student in studentList:
-      print(f"{student[0]}  {studnet[1]}  {student[2]}  {student[3]}")
+   for i in range(len(studentList)):
+      print(f"{studentList[i][0]}   {studentList[i][1]}    {studentList[i][2]}      {studentList[i][3]}")
 
 ##############  menu 4
 def Menu4(targetName):
@@ -72,22 +72,22 @@ while True :
       # 학생 정보 입력받기
       # 예외사항 처리(데이터 입력 갯수, 이미 존재하는 이름, 입력 점수 값이 양의 정수인지)
       try:
-         input_line = input("Enter name mid-score final-score : ")
-         data = input_line.split()
+         inputLine = input("Enter name mid-score final-score : ")
+         data = inputLine.split()
          name = data[0]
          # 데이터 입력 갯수 예외 처리
          if len(data) != 3:
-            raise WrongInputNum("Invalid Number of Data Inputs")
+            raise WrongInputNum("Num of data is not 3!")
          # 이미 존재하는 이름 예외 처리
          for student in studentList:
             if name == student[0]:
-               raise ExistName("Name that already Exists")
+               raise ExistName("Already exis name!")
          # 입력 점수 값 양의 정수 아닐 경우 예외처리
-         id-score, final-score = map(int, data[1:])
-         if mid-score <= 0 or final-score <= 0:
-            raise NegativeScore("Negative Score Value")
+         midScore, finalScore = map(int, data[1:])
+         if midScore <= 0 or finalScore <= 0:
+            raise NegativeScore("Score is not positive integer!")
       except ValueError:
-         print("Non-Integer Score Value")
+         print("Score is not integer!")
       except NegativeScore as e:
          print(e)
       except WrongInputNum as e:
@@ -96,13 +96,13 @@ while True :
          print(e)
       # 예외사항이 아닌 입력인 경우 1번 함수 호출
       else:
-         Menu1(name, mid-score, final-score)
+         Menu1(name, midScore, finalScore)
 
    elif choice == "2" :
       # 예외사항 처리(저장된 학생 정보의 유무)
       try:
-         if len(studnetList) == 0:
-            raise NoStudentData("No Student Data Saved")
+         if len(studentList) == 0:
+            raise NoStudentData("No Student data!")
       except NoStudentData as e:
          print(e)
       # 예외사항이 아닌 경우 2번 함수 호출
@@ -114,11 +114,11 @@ while True :
    elif choice == "3" :
       # 예외사항 처리(저장된 학생 정보의 유무, 저장되어 있는 학생들의 학점이 모두 부여되어 있는지)
       try:
-         if len(studnetList) == 0:
-            raise NoStudentData("No Student Data Saved")
+         if len(studentList) == 0:
+            raise NoStudentData("No Student data!")
          for student in studentList:
             if len(student) != 4:
-               raise NoGrade("Student not Granted Credit")
+               raise NoGrade("There is a student who didn't get grade.")
       except NoStudentData as e:
          print(e)
       except NoGrade as e:
@@ -130,8 +130,8 @@ while True :
    elif choice == "4" :
       # 예외사항 처리(저장된 학생 정보의 유무)
       try:
-         if len(studnetList) == 0:
-            raise NoStudentData("No Student Data Saved")
+         if len(studentList) == 0:
+            raise NoStudentData("No Student data!")
       except NoStudentData as e:
          print(e)
       # 예외사항이 아닌 경우, 삭제할 학생 이름 입력 받기
@@ -150,7 +150,7 @@ while True :
             print(e)
          # 있으면(예를 들어 kim 이라 하면), 4번 함수 호출 후에 "kim student information is deleted." 출력
          else:
-            menu4(name)
+            Menu4(name)
             print(f"{name} student information is deleted.")
 
    elif choice == "5" :

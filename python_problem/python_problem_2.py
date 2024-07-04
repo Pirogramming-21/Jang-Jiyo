@@ -11,6 +11,9 @@ class NegativeScore(Exception):
 # 4. 저장된 학생 정보 없음
 class NoStudentData(Exception):
    pass
+# 5. 저장되어 있는 학생의 학점이 부여되지 않음
+class NoGrade(Exception):
+   pass
 
 # 학생 정보를 저장할 리스트
 studentList = []
@@ -28,18 +31,23 @@ def Menu2() :
       if len(student) != 4:
          avg-score = (student[1] + student[2]) / 2
          if avg-score >= 90:
-            student[4] = 'A'
+            student[3] = 'A'
          else if avg-score >= 80:
-            student[4] = 'B'
+            student[3] = 'B'
          else if avg-score >= 70:
-            student[4] = 'C'
+            student[3] = 'C'
          else:
-            student[4] = 'D'
+            student[3] = 'D'
 
 
 ##############  menu 3
-def Menu3(#매개변수가 필요한지 판단 후 코딩할 것) :
-   #출력 코딩
+def Menu3() :
+   # 출력 코딩
+   print("--------------------------")
+   print("name  mid  final  grade")
+   print("--------------------------")
+   for student in studentList:
+      print(f"{student[0]}  {studnet[1]}  {student[2]}  {student[3]}")
 
 ##############  menu 4
 def Menu4(#매개변수가 필요한지 판단 후 코딩할 것):
@@ -90,7 +98,7 @@ while True :
       try:
          if len(studnetList) == 0:
             raise NoStudentData("No Student Data Saved")
-      except NoStudentData:
+      except NoStudentData as e:
          print(e)
       # 예외사항이 아닌 경우 2번 함수 호출
       else:
@@ -99,8 +107,20 @@ while True :
          print("Granding to all studnets.")
 
    elif choice == "3" :
-      #예외사항 처리(저장된 학생 정보의 유무, 저장되어 있는 학생들의 학점이 모두 부여되어 있는지)
-      #예외사항이 아닌 경우 3번 함수 호출
+      # 예외사항 처리(저장된 학생 정보의 유무, 저장되어 있는 학생들의 학점이 모두 부여되어 있는지)
+      try:
+         if len(studnetList) == 0:
+            raise NoStudentData("No Student Data Saved")
+         for student in studentList:
+            if len(student) != 4:
+               raise NoGrade("Student not Granted Credit")
+      except NoStudentData as e:
+         print(e)
+      except NoGrade as e:
+         print(e)
+      # 예외사항이 아닌 경우 3번 함수 호출
+      else:
+         Menu3()
 
    elif choice == "4" :
       #예외사항 처리(저장된 학생 정보의 유무)

@@ -154,8 +154,11 @@ while True :
             print(f"{name} student information is deleted.")
 
    elif choice == "5" :
-      #프로그램 종료 메세지 출력
-      #반복문 종료
+      # 프로그램 종료 메세지 출력
+      print("Exit Program!")
+      # 반복문 종료
+      break
 
    else :
-      #"Wrong number. Choose again." 출력
+      # "Wrong number. Choose again." 출력
+      print("Wrong number. Choose again.")

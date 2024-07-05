@@ -6,19 +6,22 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>stopwatch</title>
    <link rel="stylesheet" href="stopwatch.css">
-   <script src="stopwatch.js"></script>
    <script src="https://kit.fontawesome.com/20832c1291.js" crossorigin="anonymous"></script>
 </head>
 <body>
    <div class="container">
       <div class="top__logo"><i class="fa-solid fa-stopwatch"></i><strong>피로그래밍 스톱워치</strong></div>
       <div class="watch__container">
-         <div class="time">01:97</div>
-         <ul class="btns">
-            <li><button class="start">start</button></li>
-            <li><button class="stop">stop</button></li>
-            <li><button class="reset">reset</button></li>
-         </ul>
+         <div class="time">
+            <p class="second"></p>
+            <p></p>
+            <p class="millisecond"></p>
+         </div>
+         <div class="btns">
+            <button type="button" id="start">start</button>
+            <button type="button" id="stop">stop</button>
+            <button type="button" id="reset">reset</button>
+         </div>
       </div>
       <div class="record__container">
          <div class="record__top">
@@ -43,4 +46,5 @@
    </div>
    <!-- <i class="fa-regular fa-circle-check"></i> -->
 </body>
+<script src="stopwatch.js"></script>
 </html>

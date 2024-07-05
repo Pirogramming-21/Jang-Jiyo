@@ -1,5 +1,28 @@
+const stopwatchBtn = document.querySelector('.stopwatch');
+const timerBtn = document.querySelector('.timer');
+const recordContainer = document.querySelector('.record__container');
+const watchContainer = document.querySelector('.watch__container');
+const timerContainer = document.querySelector('.timer__container');
+
+// 기본 설정값: 스톱워치
+timerContainer.classList.add('hidden');
+
+// 스톱워치로 전환
+stopwatchBtn.addEventListener("click", () => {
+   watchContainer.classList.remove('hidden');
+   timerContainer.classList.add('hidden');
+   recordContainer.classList.remove('hidden');
+})
+// 타이머로 전환
+timerBtn.addEventListener("click", () => {
+   watchContainer.classList.add('hidden');
+   timerContainer.classList.remove('hidden');
+   recordContainer.classList.add('hidden');
+})
+
+/***** 스톱워치 *****/
 // interval을 설정하기 위한 변수
-let intervalState;
+let stopwatchIntervalState;
 // 현재 시간을 위한 변수
 let second = 0;
 let millisecond = 0;
@@ -28,11 +51,11 @@ const allCheckBtn = document.createElement('i');
 allCheckBtn.className = 'fa-regular fa-circle';
 allCheckBtnContainer.appendChild(allCheckBtn);
 
-const startBtn = document.getElementById('start');
-startBtn.addEventListener("click", () => {
+const stopwatchStartBtn = document.getElementById('stopwatch__start');
+stopwatchStartBtn.addEventListener("click", () => {
    if (stopWatchState == false) {
       console.log("pushed start!!");
-      intervalState = setInterval(startTimer, 10);
+      stopwatchIntervalState = setInterval(startStopwatch, 10);
       stopWatchState = true;
    }
 })
@@ -86,8 +109,6 @@ stopBtn.addEventListener("click", () => {
       }
    })
 
-   
-
    // <p>"기록"</p>
    let recordText = document.createElement('p');
    recordText.innerText = recordSecond + ':' + recordMillisecond;
@@ -97,21 +118,20 @@ stopBtn.addEventListener("click", () => {
 
    console.log(recordText.innerText);
    // setInterval 멈추기
-   clearInterval(intervalState);
+   clearInterval(stopwatchIntervalState);
    stopWatchState = false;
 })
 
 const resetBtn = document.getElementById('reset');
 resetBtn.addEventListener("click", () => {
    console.log("pushed reset!!");
-   clearInterval(intervalState);
+   clearInterval(stopwatchIntervalState);
    millisecond = 0;
    millisecondText.innerText = '00';
    second = 0;
    secondText.innerText = '00';
    stopWatchState = false;
 })
-
 
 const trashBtn = document.querySelector('.trash');
 trashBtn.addEventListener("click", () => {
@@ -161,7 +181,7 @@ allCheckBtn.addEventListener("click", () => {
    }
 })
 
-function startTimer() {
+function startStopwatch() {
    millisecond++;
    if (millisecond <= 9) {
       millisecondText.innerText = '0' + millisecond;
@@ -184,3 +204,71 @@ function startTimer() {
 timeContainer.appendChild(secondText);
 timeContainer.appendChild(textNode);
 timeContainer.appendChild(millisecondText);
+
+
+/***** 타이머 *****/
+const inputSecond = document.getElementById('second');
+const inputMillisecond = document.getElementById('millisecond');
+const finishText = document.querySelector('.finish');
+
+inputSecond.value = '00';
+inputMillisecond.value = '00';
+finishText.classList.add('hidden');
+
+// interval을 설정하기 위한 변수
+let timerIntervalState;
+let stopTimerState = false;
+const timerStartBtn = document.getElementById('timer__start');
+timerStartBtn.addEventListener("click", () => {
+   finishText.classList.add('hidden');
+   if (stopTimerState == false) {
+      console.log("pushed start!!");
+      timerIntervalState = setInterval(startTimer, 10);
+      stopTimerState = true;
+   }
+})
+
+const pauseBtn = document.getElementById('pause');
+pauseBtn.addEventListener("click", () => {
+   console.log("pushed pause!!");
+   clearInterval(timerIntervalState);
+   stopTimerState = false;
+})
+
+const playBtn = document.getElementById('play');
+playBtn.addEventListener("click", () => {
+   if (stopTimerState == false) {
+      console.log("pushed play!!");
+      timerIntervalState = setInterval(startTimer, 10);
+      stopTimerState = true;
+   }
+})
+
+function startTimer() {
+   inputMillisecond.value--;
+    
+   if (inputMillisecond.value < 0) {
+       inputSecond.value--;
+       inputMillisecond.value = 99;
+   }
+
+   if (inputMillisecond.value <= 9) {
+      inputMillisecond.innerText = '0' + inputMillisecond.value;
+   } else {
+      inputMillisecond.innerText = inputMillisecond.value;
+   }
+
+   if (inputSecond.value <= 9) {
+      inputSecond.innerText = '0' + inputSecond.value;
+   } else {
+      inputSecond.innerText = inputSecond.value;
+   }
+   
+   if (inputSecond.value == 0 && inputMillisecond.value == 0) {
+      clearInterval(timerIntervalState);
+      inputMillisecond.innerText == '00';
+      inputSecond.innerText == '00';
+      finishText.classList.remove('hidden');
+      stopTimerState = false;
+   }
+}

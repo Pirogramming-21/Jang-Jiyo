@@ -9,7 +9,13 @@
 </head>
 <body>
    <div class="container">
-      <div class="top__logo"><i class="fa-solid fa-stopwatch"></i><strong>피로그래밍 스톱워치</strong></div>
+      <div class="top__logo">
+         <i class="fa-solid fa-stopwatch"></i>
+         <strong>피로그래밍</strong>
+         <button class="stopwatch"> 스톱워치</button>
+         <button class="timer">타이머</button>
+      </div>
+      <!-- 스톱워치 -->
       <div class="watch__container">
          <div class="time">
             <p class="second"></p>
@@ -17,10 +23,26 @@
             <p class="millisecond"></p>
          </div>
          <div class="btns">
-            <button type="button" id="start">start</button>
+            <button type="button" id="stopwatch__start">start</button>
             <button type="button" id="stop">stop</button>
             <button type="button" id="reset">reset</button>
          </div>
+      </div>
+      <!-- 타이머 -->
+      <div class="timer__container">
+         <div class="timer__in__container">
+            <div class="time">
+               <input type="text" id="second">
+               <p>:</p>
+               <input type="text" id="millisecond">
+            </div>
+            <div class="btns">
+               <button type="button" id="timer__start">start</button>
+               <button type="button" id="pause"><i class="fa-solid fa-pause"></i></button>
+               <button type="button" id="play"><i class="fa-solid fa-play"></i></button>
+            </div>
+         </div>
+         <p class="finish">finished!!</p>
       </div>
       <div class="record__container">
          <div class="record__top">
@@ -37,7 +59,6 @@
          </div>
       </div>
    </div>
-   <!-- <i class="fa-regular fa-circle-check"></i> -->
 </body>
 <script src="https://kit.fontawesome.com/20832c1291.js" crossorigin="anonymous"></script>
 <script src="stopwatch.js"></script>

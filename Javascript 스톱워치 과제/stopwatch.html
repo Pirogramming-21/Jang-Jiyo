@@ -6,7 +6,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>stopwatch</title>
    <link rel="stylesheet" href="stopwatch.css">
-   <script src="https://kit.fontawesome.com/20832c1291.js" crossorigin="anonymous"></script>
 </head>
 <body>
    <div class="container">
@@ -25,26 +24,21 @@
       </div>
       <div class="record__container">
          <div class="record__top">
-            <i class="fa-regular fa-circle"></i>
+            <button class="top__circle"><i class="fa-regular fa-circle"></i></button>
             <p>구간 기록</p>
-            <i class="fa-solid fa-trash"></i>
+            <button class="trash"><i class="fa-solid fa-trash"></i></button>
          </div>
          <div class="record__bottom">
-            <!-- 예시 -->
-            <ul>
-               <li>
-                  <i class="fa-regular fa-circle"></i>
-                  <p>01:74</p>
-               </li>
-               <li>
-                  <i class="fa-regular fa-circle"></i>
-                  <p>01:74</p>
-               </li>
-            </ul>
+            <!--
+            <div class="record">
+               <button class="bottom__circle"><i class="fa-regular fa-circle"></i></button>
+               <p></p>
+            </div> -->
          </div>
       </div>
    </div>
    <!-- <i class="fa-regular fa-circle-check"></i> -->
 </body>
+<script src="https://kit.fontawesome.com/20832c1291.js" crossorigin="anonymous"></script>
 <script src="stopwatch.js"></script>
 </html>

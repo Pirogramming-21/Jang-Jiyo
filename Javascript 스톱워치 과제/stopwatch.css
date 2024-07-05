@@ -64,6 +64,7 @@ body {
    height: 40px;
    padding: 0;
    box-shadow: 3px 3px 3px lightgray;
+   font-size: 15px;
 }
 
 .record__container {
@@ -81,22 +82,24 @@ body {
    height: 35px;
    padding: 0 20px;
 }
+.record__top button, .record button {
+   background-color: transparent;
+   border: none;
+   font-size: 16px;
+}
 
 .record__bottom {
    background-color: white;
    padding: 10px 20px;
-}
-.record__bottom ul {
    display: flex;
    flex-direction: column;
-   padding: 0;
-   margin: 0;
    gap: 15px;
 }
-.record__bottom li {
+.record__bottom .record {
    list-style: none;
    display: flex;
    align-items: center;
    height: 20px;
    gap: 95px;
+   font-size: 18px;
 }

@@ -63,46 +63,30 @@ stopBtn.addEventListener("click", () => {
    const nonCheckedBox = document.createElement('i');
    nonCheckedBox.className = 'fa-regular fa-circle';
    circleBtn.appendChild(nonCheckedBox);
+
    // nonChecked 클릭 -> Checked || checked 클릭 -> nonChecked
    nonCheckedBox.addEventListener("click", () => {
       nonCheckedBox.classList.toggle('fa-circle');
       nonCheckedBox.classList.toggle('fa-circle-check');
       // record 요소에 selected가 있으면 제거 || 없으면 추가
       record.classList.toggle('selected');
-   })
 
-   allCheckBtn.addEventListener("click", () => {
       const allRecords = document.querySelectorAll('.record');
-      const allSelectedRecords = document.querySelectorAll('.record.selected');
-      
-      // selected 되지 않은 것이 있다면 selected로 바꿔주고
-      // 해당 버튼도 체크표시될 수 있도록
-      if (allRecords.length != allSelectedRecords.length) {
-         allRecords.forEach(record => {
-            let circleIcon = record.querySelector('.fa-regular');
-            if (circleIcon) {
-               circleIcon.classList.remove('fa-circle');
-               circleIcon.classList.add('fa-circle-check');
-            }
-            record.classList.remove('selected');
-            record.classList.add('selected');
-         })
-         allCheckBtn.classList.remove('fa-circle');
-         allCheckBtn.classList.add('fa-circle-check');
-      } else { // 모든 기록이 선택된 경우
-         allRecords.forEach(record => {
-            record.classList.remove('selected');
-            // 각 record에 대응하는 체크박스 설정
-            let circleIcon = record.querySelector('.fa-regular');
-            if (circleIcon) {
-               circleIcon.classList.remove('fa-circle-check');
-               circleIcon.classList.add('fa-circle');
-            }
-         });
-         allCheckBtn.classList.remove('fa-circle-check');
-         allCheckBtn.classList.add('fa-circle');
+      const selectedRecords = document.querySelectorAll('.record.selected'); 
+      if (allRecords.length != selectedRecords.length) {
+         if (allCheckBtn.classList.contains('fa-circle-check')) {
+            allCheckBtn.classList.remove('fa-circle-check');
+            allCheckBtn.classList.add('fa-circle');
+         }
+      } else {
+         if (!allCheckBtn.classList.contains('fa-circle-check')) {
+            allCheckBtn.classList.remove('fa-circle');
+            allCheckBtn.classList.add('fa-circle-check');
+         }
       }
    })
+
+   
 
    // <p>"기록"</p>
    let recordText = document.createElement('p');
@@ -135,6 +119,46 @@ trashBtn.addEventListener("click", () => {
    selectedRecord.forEach(record => {
       records.removeChild(record);
    })
+})
+
+allCheckBtn.addEventListener("click", () => {   
+   console.log("클릭");
+   const allRecords = document.querySelectorAll('.record');
+   const selectedRecords = document.querySelectorAll('.record.selected'); 
+   // selected 되지 않은 것이 있다면 selected로 바꿔주고
+   // 해당 버튼도 체크표시될 수 있도록
+   if (allRecords.length != selectedRecords.length) {
+      console.log("selected 덜 됨");
+      allRecords.forEach(record => {
+         if (!record.classList.contains('selected')) {
+            record.classList.add('selected');
+            let circleIcon = record.querySelector('.fa-regular');
+            if (circleIcon) {
+               circleIcon.classList.remove('fa-circle');
+               circleIcon.classList.add('fa-circle-check');
+            }
+         }
+      })
+      if (!allCheckBtn.classList.contains('fa-circle-check')) {
+         allCheckBtn.classList.remove('fa-circle');
+         allCheckBtn.classList.add('fa-circle-check');
+      }
+   } else { // 모든 기록이 선택된 경우
+      console.log("selected 다 됨")
+      allRecords.forEach(record => {
+         // 각 record에 대응하는 체크박스 설정
+         let circleIcon = record.querySelector('.fa-regular');
+         if (circleIcon) {
+            circleIcon.classList.remove('fa-circle-check');
+            circleIcon.classList.add('fa-circle');
+            record.classList.remove('selected');
+         }
+      });
+      if (allCheckBtn.classList.contains('fa-circle-check')) {
+         allCheckBtn.classList.remove('fa-circle-check');
+         allCheckBtn.classList.add('fa-circle');
+      }
+   }
 })
 
 function startTimer() {

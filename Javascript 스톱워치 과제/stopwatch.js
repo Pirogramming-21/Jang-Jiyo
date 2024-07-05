@@ -23,6 +23,10 @@ millisecondText.innerText = '00';
 // <div class="record__bottom"></div>
 const records = document.querySelector('.record__bottom');
 
+const allCheckBtnContainer = document.querySelector('.top__circle');
+const allCheckBtn = document.createElement('i');
+allCheckBtn.className = 'fa-regular fa-circle';
+allCheckBtnContainer.appendChild(allCheckBtn);
 
 const startBtn = document.getElementById('start');
 startBtn.addEventListener("click", () => {
@@ -50,13 +54,56 @@ stopBtn.addEventListener("click", () => {
    // <div class="record"></div>
    const record = document.createElement('div');
    record.className = 'record';
+
    // <button class="button__circle"></button>
    const circleBtn = document.createElement('button');
    circleBtn.className = 'bottom__circle';
+
    // <i class="fa-regular fa-circle"></i>
    const nonCheckedBox = document.createElement('i');
    nonCheckedBox.className = 'fa-regular fa-circle';
    circleBtn.appendChild(nonCheckedBox);
+   // nonChecked 클릭 -> Checked || checked 클릭 -> nonChecked
+   nonCheckedBox.addEventListener("click", () => {
+      nonCheckedBox.classList.toggle('fa-circle');
+      nonCheckedBox.classList.toggle('fa-circle-check');
+      // record 요소에 selected가 있으면 제거 || 없으면 추가
+      record.classList.toggle('selected');
+   })
+
+   allCheckBtn.addEventListener("click", () => {
+      const allRecords = document.querySelectorAll('.record');
+      const allSelectedRecords = document.querySelectorAll('.record.selected');
+      
+      // selected 되지 않은 것이 있다면 selected로 바꿔주고
+      // 해당 버튼도 체크표시될 수 있도록
+      if (allRecords.length != allSelectedRecords.length) {
+         allRecords.forEach(record => {
+            let circleIcon = record.querySelector('.fa-regular');
+            if (circleIcon) {
+               circleIcon.classList.remove('fa-circle');
+               circleIcon.classList.add('fa-circle-check');
+            }
+            record.classList.remove('selected');
+            record.classList.add('selected');
+         })
+         allCheckBtn.classList.remove('fa-circle');
+         allCheckBtn.classList.add('fa-circle-check');
+      } else { // 모든 기록이 선택된 경우
+         allRecords.forEach(record => {
+            record.classList.remove('selected');
+            // 각 record에 대응하는 체크박스 설정
+            let circleIcon = record.querySelector('.fa-regular');
+            if (circleIcon) {
+               circleIcon.classList.remove('fa-circle-check');
+               circleIcon.classList.add('fa-circle');
+            }
+         });
+         allCheckBtn.classList.remove('fa-circle-check');
+         allCheckBtn.classList.add('fa-circle');
+      }
+   })
+
    // <p>"기록"</p>
    let recordText = document.createElement('p');
    recordText.innerText = recordSecond + ':' + recordMillisecond;
@@ -79,6 +126,15 @@ resetBtn.addEventListener("click", () => {
    second = 0;
    secondText.innerText = '00';
    stopWatchState = false;
+})
+
+
+const trashBtn = document.querySelector('.trash');
+trashBtn.addEventListener("click", () => {
+   const selectedRecord = document.querySelectorAll('.record.selected');
+   selectedRecord.forEach(record => {
+      records.removeChild(record);
+   })
 })
 
 function startTimer() {

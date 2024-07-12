@@ -1,0 +1,43 @@
+{% extends 'header.html' %}
+
+{% block content %}
+   <div class="update_container">
+      <h2> <span>Movie</span> Review </h2>
+      <div class="update_content">
+         <form action="/movies/{{movie.id}}/update" method="post">
+            {% csrf_token %}
+            <div>제목: <input name="title" value="{{movie.title}}"/></div>
+            <div>개봉년도: <input name="release" value="{{movie.release}}"/></div>
+            <div>감독: <input name="director" value="{{movie.director}}"/></div>
+            <div>주연: <input name="leadrole" value="{{movie.leadrole}}"/></div>
+            <div>장르: 
+               <select name="genre" >
+                  <option value="action" {% if movie.genre == 'action' %}selected{% endif %}>액션</option>
+                  <option value="adventure" {% if movie.genre == 'adventure' %}selected{% endif %}>모험</option>
+                  <option value="animation" {% if movie.genre == 'animation' %}selected{% endif %}>애니메이션</option>
+                  <option value="comedy" {% if movie.genre == 'comedy' %}selected{% endif %}>코미디</option>
+                  <option value="crime" {% if movie.genre == 'crime' %}selected{% endif %}>범죄</option>
+                  <option value="documentary" {% if movie.genre == 'documentary' %}selected{% endif %}>다큐멘터리</option>
+                  <option value="drama" {% if movie.genre == 'drama' %}selected{% endif %}>드라마</option>
+                  <option value="family" {% if movie.genre == 'family' %}selected{% endif %}>가족</option>
+                  <option value="fantasy" {% if movie.genre == 'fantasy' %}selected{% endif %}>판타지</option>
+                  <option value="noir" {% if movie.genre == 'noir' %}selected{% endif %}>느와르</option>
+                  <option value="history" {% if movie.genre == 'history' %}selected{% endif %}>역사</option>
+                  <option value="musical" {% if movie.genre == 'musical' %}selected{% endif %}>뮤지컬</option>
+                  <option value="horror" {% if movie.genre == 'horror' %}selected{% endif %}>공포</option>
+                  <option value="romance" {% if movie.genre == 'romance' %}selected{% endif %}>로맨스</option>
+                  <option value="sf" {% if movie.genre == 'sf' %}selected{% endif %}>공상과학</option>
+               </select>
+            </div>
+            <div>별점: <input name="evaluation" placeholder="별점" value="{{movie.evaluation}}"/></div>
+            <div>러닝타임: <input name="runningtime" placeholder="러닝타임" value="{{movie.runningtime}}"/></div>
+            <div>리뷰: <br/> 
+            <textarea name="review" cols="30" rows="10" placeholder="리뷰">{{movie.review}}</textarea>
+            </div>
+            <div class="save_btn">
+               <input type="submit" value="save">
+            </div>
+         </form>
+      </div>
+   </div>
+{% endblock %}

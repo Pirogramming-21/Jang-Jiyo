@@ -1,0 +1,42 @@
+{% extends 'header.html' %}
+
+{% block content %}
+   <div class="create_container">
+      <h2> <span>Movie</span> Review </h2>
+      <div class="create_content">
+         <form action="/movies/create" method="post">
+            {% csrf_token %}
+            <div>제목: <input name="title"/></div>
+            <div>개봉년도: <input name="release"/></div>
+            <div>감독: <input name="director"/></div>
+            <div>주연: <input name="leadrole"/></div>
+            <div>장르: 
+               <select name="genre">
+                  <option value="action">액션</option>
+                  <option value="adventure">모험</option>
+                  <option value="animation">애니메이션</option>
+                  <option value="comedy">코미디</option>
+                  <option value="crime">범죄</option>
+                  <option value="documentary">다큐멘터리</option>
+                  <option value="drama">드라마</option>
+                  <option value="family">가족</option>
+                  <option value="fantasy">판타지</option>
+                  <option value="noir">느와르</option>
+                  <option value="history">역사</option>
+                  <option value="musical">뮤지컬</option>
+                  <option value="horror">공포</option>
+                  <option value="romance">로맨스</option>
+                  <option value="sf">공상과학</option>
+               </select>
+            </div>
+            <div>별점: <input name="evaluation"/></div>
+            <div>러닝타임: <input name="runningtime"/></div>
+            <div>리뷰: <br/> 
+               <textarea name="review" cols="40" rows="10"></textarea></div>
+            <div class="save_btn">
+               <input type="submit" value="save">
+            </div>
+         </form>
+      </div>
+   </div>
+{% endblock %}

@@ -1,0 +1,152 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+a {
+   text-decoration: none;
+   color: black;
+}
+/* Header */
+.page_header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 35px;
+   padding: 15px 20px;
+   border-bottom: 1px solid lightgray;
+}
+
+.logo {
+   font-size: 25px;
+}
+.logo span {
+   font-weight: bold;
+   color: red;
+}
+
+.create {
+   background-color: rgba(211,211,211, .5);
+   padding: 8px;
+   border-radius: 5px;
+   font-size: 15px;
+   font-weight: bold;
+}
+
+/* main */
+.content_container {
+   margin: 20px 35px;
+}
+
+/* movie_list */
+.grid_movies_container {
+   margin: 0 100px;
+   padding: 15px 20px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 10px;
+}
+.movie {
+   background-color: rgba(211,211,211, .5);
+   border-radius: 10px;
+   padding: 30px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+.movie p {
+   font-size: 15px;
+}
+.movie span {
+   color: gray;
+}
+
+/* movie_detail */
+.detail_container {
+   margin: 0 30px;
+}
+.detail_header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+}
+.edit_delete {
+   display: flex;
+   gap: 10px;
+}
+.edit_delete a, .edit_delete form {
+   font-size: 15px;
+   color: gray;
+}
+.edit_delete input {
+   border: none;
+   background-color: transparent;
+   font-size: 15px;
+}
+.edit_delete input:hover {
+   cursor: pointer;
+}
+.detail_main {
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(211,211,211, .5);
+   margin-top: 5px;
+   padding: 20px;
+   font-size: 20px;
+   gap: 10px;
+}
+.detail_main span {
+   color: gray;
+   font-weight: bold;
+   margin-right: 5px;
+}
+.detail_review {
+   background-color: rgba(211,211,211, .5);
+   margin-top: 10px;
+   padding: 20px;
+   font-size: 15px;
+}
+
+/* movie_create */
+.create_container {
+   background-color: rgba(211,211,211, .5);
+   width: 500px;
+   margin: 0 auto;
+   padding: 30px;
+}
+.create_container h2 {
+   text-align: center;
+   padding-bottom: 20px;
+   border-bottom: 1px solid gray;
+   margin: 0 10px;
+}
+.create_container h2 span {
+   color: red;
+}
+.create_content {
+   margin: 0 30px;
+   margin-top: 30px;
+}
+.create_content form {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   font-size: 15px;
+}
+.create_content form input, .create_content form select, .create_content form textarea {
+   border: 1px solid lightgray;
+   line-height: 20px;
+}
+.save_btn {
+   display: flex;
+   justify-content: flex-end;
+}
+.save_btn input {
+   background-color: white;
+   border-radius: 5px;
+   padding: 2px 5px;
+}
+.save_btn input:hover {
+   cursor: pointer;
+}

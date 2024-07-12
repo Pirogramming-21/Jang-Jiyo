@@ -1,0 +1,38 @@
+{% extends 'header.html' %}
+
+{% block content %}
+  <div class="detail_container">
+    <div class="detail_header">
+      <h1>{{ movie.title }}</h1>
+      <div class="edit_delete">
+        <a href="/movies/{{movie.id}}/update">수정</a>
+        <form action="/movies/{{movie.id}}/delete" method="post">
+          {% csrf_token %}
+          <input type="submit" value="삭제" style="color: gray">
+        </form>
+      </div>
+    </div>
+    <div class="detail_main">
+      <small><span>감독</span> {{ movie.director }}</small>
+      <small><span>주연</span> {{ movie.leadrole }}</small>
+      {% if movie.genre == 'action' %}<small><span>장르</span> 액션</small>{% endif %}
+      {% if movie.genre == 'adventure' %}<small><span>장르</span> 모험</small>{% endif %}
+      {% if movie.genre == 'animation' %}<small><span>장르</span> 애니메이션</small>{% endif %}
+      {% if movie.genre == 'comedy' %}<small><span>장르</span> 코미디</small>{% endif %}
+      {% if movie.genre == 'crime' %}<small><span>장르</span> 범죄</small>{% endif %}
+      {% if movie.genre == 'documentary' %}<small><span>장르</span> 다큐멘터리</small>{% endif %}
+      {% if movie.genre == 'drama' %}<small><span>장르</span> 드라마</small>{% endif %}
+      {% if movie.genre == 'family' %}<small><span>장르</span> 가족</small>{% endif %}
+      {% if movie.genre == 'fantasy' %}<small><span>장르</span> 판타지</small>{% endif %}
+      {% if movie.genre == 'noir' %}<small><span>장르</span> 느와르</small>{% endif %}
+      {% if movie.genre == 'history' %}<small><span>장르</span> 역사</small>{% endif %}
+      {% if movie.genre == 'musical' %}<small><span>장르</span> 뮤지컬</small>{% endif %}
+      {% if movie.genre == 'horror' %}<small><span>장르</span> 공포</small>{% endif %}
+      {% if movie.genre == 'romance' %}<small><span>장르</span> 로맨스</small>{% endif %}
+      {% if movie.genre == 'sf' %}<small><span>장르</span> 공상과학</small>{% endif %}
+      <small><span>별점</span> {{ movie.evaluation }}</small>
+      <small><span>러닝타임</span>{{ movie.runningtime }}</small>
+    </div>
+    <div class="detail_review">{{ movie.review }}</div>
+  </div>
+{% endblock %}

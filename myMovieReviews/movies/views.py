@@ -31,3 +31,29 @@ def movie_detail(request, pk):
       "movie": movie
    }
    return render(request, 'movie_detail.html', context)
+
+def movie_update(request, pk):
+   movie = Movie.objects.get(id = pk)
+   if request.method == 'POST':
+      movie.title = request.POST["title"]
+      movie.release = request.POST["release"]
+      movie.director = request.POST["director"]
+      movie.leadrole = request.POST["leadrole"]
+      movie.genre = request.POST["genre"]
+      movie.evaluation = request.POST["evaluation"]
+      movie.runningtime = request.POST["runningtime"]
+      movie.review = request.POST["review"]
+
+      movie.save()
+      return redirect(f"/movies/{pk}")
+   
+   context = {
+      "movie": movie
+   }
+   return render(request, 'movie_update.html', context)
+
+def movie_delete(request, pk):
+   if request.method == 'POST':
+      movie = Movie.objects.get(id = pk)
+      movie.delete()
+   return redirect("/movies")

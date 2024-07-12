@@ -1,0 +1,33 @@
+<h1> 리뷰 수정하기 </h1>
+
+<form action="/movies/{{movie.id}}/update" method="post">
+   {% csrf_token %}
+   <input name="title" placeholder="제목" value="{{movie.title}}"/> <br/>
+   <input name="release" placeholder="개봉년도" value="{{movie.release}}"/> <br/>
+   <input name="director" placeholder="감독" value="{{movie.director}}"/> <br/>
+   <input name="leadrole" placeholder="주연" value="{{movie.leadrole}}"/> <br/>
+   <select name="genre" placeholder="장르">
+      <option value="action" {% if movie.genre == 'action' %}selected{% endif %}>액션</option>
+      <option value="adventure" {% if movie.genre == 'adventure' %}selected{% endif %}>모험</option>
+      <option value="animation" {% if movie.genre == 'animation' %}selected{% endif %}>애니메이션</option>
+      <option value="comedy" {% if movie.genre == 'comedy' %}selected{% endif %}>코미디</option>
+      <option value="crime" {% if movie.genre == 'crime' %}selected{% endif %}>범죄</option>
+      <option value="documentary" {% if movie.genre == 'documentary' %}selected{% endif %}>다큐멘터리</option>
+      <option value="drama" {% if movie.genre == 'drama' %}selected{% endif %}>드라마</option>
+      <option value="family" {% if movie.genre == 'family' %}selected{% endif %}>가족</option>
+      <option value="fantasy" {% if movie.genre == 'fantasy' %}selected{% endif %}>판타지</option>
+      <option value="noir" {% if movie.genre == 'noir' %}selected{% endif %}>느와르</option>
+      <option value="history" {% if movie.genre == 'history' %}selected{% endif %}>역사</option>
+      <option value="musical" {% if movie.genre == 'musical' %}selected{% endif %}>뮤지컬</option>
+      <option value="horror" {% if movie.genre == 'horror' %}selected{% endif %}>공포</option>
+      <option value="romance" {% if movie.genre == 'romance' %}selected{% endif %}>로맨스</option>
+      <option value="sf" {% if movie.genre == 'sf' %}selected{% endif %}>공상과학</option>
+   </select>
+   <br/>
+   <input name="evaluation" placeholder="평점" value="{{movie.evaluation}}"/> <br/>
+   <input name="runningtime" placeholder="러닝타임" value="{{movie.runningtime}}"/> <br/>
+   <textarea name="review" cols="30" rows="10" placeholder="리뷰">{{movie.review}}</textarea>
+   <div>
+      <input type="submit" value="수정완료">
+   </div>
+</form>

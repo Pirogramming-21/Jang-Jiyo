@@ -3,7 +3,21 @@
 <h1>{{ movie.title }}</h1>
 <small>개봉년도: {{ movie.release }}</small>
 <small>주연: {{ movie.leadrole }}</small>
-<small>장르: {{ movie.genre }}</small>
+{% if movie.genre == 'action' %}<small>장르: 액션</small>{% endif %}
+{% if movie.genre == 'adventure' %}<small>장르: 모험</small>{% endif %}
+{% if movie.genre == 'animation' %}<small>장르: 애니메이션</small>{% endif %}
+{% if movie.genre == 'comedy' %}<small>장르: 코미디</small>{% endif %}
+{% if movie.genre == 'crime' %}<small>장르: 범죄</small>{% endif %}
+{% if movie.genre == 'documentary' %}<small>장르: 다큐멘터리</small>{% endif %}
+{% if movie.genre == 'drama' %}<small>장르: 드라마</small>{% endif %}
+{% if movie.genre == 'family' %}<small>장르: 가족</small>{% endif %}
+{% if movie.genre == 'fantasy' %}<small>장르: 판타지</small>{% endif %}
+{% if movie.genre == 'noir' %}<small>장르: 느와르</small>{% endif %}
+{% if movie.genre == 'history' %}<small>장르: 역사</small>{% endif %}
+{% if movie.genre == 'musical' %}<small>장르: 뮤지컬</small>{% endif %}
+{% if movie.genre == 'horror' %}<small>장르: 공포</small>{% endif %}
+{% if movie.genre == 'romance' %}<small>장르: 로맨스</small>{% endif %}
+{% if movie.genre == 'sf' %}<small>장르: 공상과학</small>{% endif %}
 <small>별점: {{ movie.evaluation }}</small>
 <small>러닝타임: {{ movie.runningtime }}</small>
 <br />

@@ -12,7 +12,21 @@
    {% for movie in movies %}
       <a href="/movies/{{movie.id}}"><h2>{{ movie.title }}</h2></a>
       <p>{{ movie.release }}</p>
-      <p>{{ movie.genre }}</p>
+      {% if movie.genre == 'action' %}<p>액션</p>{% endif %}
+      {% if movie.genre == 'adventure' %}<p>모험</p>{% endif %}
+      {% if movie.genre == 'animation' %}<p>애니메이션</p>{% endif %}
+      {% if movie.genre == 'comedy' %}<p>코미디</p>{% endif %}
+      {% if movie.genre == 'crime' %}<p>범죄</p>{% endif %}
+      {% if movie.genre == 'documentary' %}<p>다큐멘터리</p>{% endif %}
+      {% if movie.genre == 'drama' %}<p>드라마</p>{% endif %}
+      {% if movie.genre == 'family' %}<p>가족</p>{% endif %}
+      {% if movie.genre == 'fantasy' %}<p>판타지</p>{% endif %}
+      {% if movie.genre == 'noir' %}<p>느와르</p>{% endif %}
+      {% if movie.genre == 'history' %}<p>역사</p>{% endif %}
+      {% if movie.genre == 'musical' %}<p>뮤지컬</p>{% endif %}
+      {% if movie.genre == 'horror' %}<p>공포</p>{% endif %}
+      {% if movie.genre == 'romance' %}<p>로맨스</p>{% endif %}
+      {% if movie.genre == 'sf' %}<p>공상과학</p>{% endif %}
       <p>{{ movie.evaluation }}</p>
    {% endfor %}
 

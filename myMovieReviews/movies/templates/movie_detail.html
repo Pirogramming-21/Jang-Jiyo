@@ -31,7 +31,13 @@
       {% if movie.genre == 'romance' %}<small><span>장르</span> 로맨스</small>{% endif %}
       {% if movie.genre == 'sf' %}<small><span>장르</span> 공상과학</small>{% endif %}
       <small><span>별점</span> {{ movie.evaluation }}</small>
-      <small><span>러닝타임</span>{{ movie.runningtime }}</small>
+      <small><span>러닝타임</span>
+        {% if movie.runningtime >= 60 %}
+          {{ runningtime_hour }}시간 {{ runningtime_minute }}분
+        {% else %}
+          {{ movie.runningtime }}분
+        {% endif %}
+      </small>
     </div>
     <div class="detail_review">{{ movie.review }}</div>
   </div>

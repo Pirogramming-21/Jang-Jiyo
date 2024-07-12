@@ -21,6 +21,7 @@
             {% if movie.genre == 'horror' %}<p><span>장르: </span>공포</p>{% endif %}
             {% if movie.genre == 'romance' %}<p><span>장르: </span>로맨스</p>{% endif %}
             {% if movie.genre == 'sf' %}<p><span>장르: </span>공상과학</p>{% endif %}
+            <p><span>별점: </span>{{ movie.evaluation }}</p>
          </div>
       {% endfor %}
    </div>

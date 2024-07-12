@@ -27,8 +27,14 @@ def movie_create(request):
 
 def movie_detail(request, pk):
    movie = Movie.objects.get(id = pk)
+   if movie.runningtime >= 60:
+      hour = movie.runningtime // 60
+      minute = movie.runningtime % 60
+   
    context = {
-      "movie": movie
+      "movie": movie,
+      'runningtime_hour': hour,
+      'runningtime_minute': minute
    }
    return render(request, 'movie_detail.html', context)
 

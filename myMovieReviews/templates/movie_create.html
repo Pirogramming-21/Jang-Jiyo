@@ -1,0 +1,33 @@
+<h1> 영화 리뷰 작성하기 </h1>
+
+<form action="/movies/create" method="post">
+   {% csrf_token %}
+   <input name="title" placeholder="제목"  /> <br/>
+   <input name="release" placeholder="개봉년도" /> <br/>
+   <input name="director" placeholder="감독" /> <br/>
+   <input name="leadrole" placeholder="주연" /> <br/>
+   <select name="genre" placeholder="장르">
+      <option value="action">액션</option>
+      <option value="adventure">모험</option>
+      <option value="animation">애니메이션</option>
+      <option value="comedy">코미디</option>
+      <option value="crime">범죄</option>
+      <option value="documentary">다큐멘터리</option>
+      <option value="drama">드라마</option>
+      <option value="family">가족</option>
+      <option value="fantasy">판타지</option>
+      <option value="noir">느와르</option>
+      <option value="history">역사</option>
+      <option value="musical">뮤지컬</option>
+      <option value="horror">공포</option>
+      <option value="romance">로맨스</option>
+      <option value="sf">공상과학</option>
+   </select>
+   <br/>
+   <input name="evaluation" placeholder="평점" /> <br/>
+   <input name="runningtime" placeholder="러닝타임" /> <br/>
+   <textarea name="review" cols="30" rows="10" placeholder="리뷰"></textarea>
+   <div>
+      <input type="submit" value="작성완료">
+   </div>
+</form>

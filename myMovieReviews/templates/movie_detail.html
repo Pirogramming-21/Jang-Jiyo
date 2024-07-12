@@ -1,0 +1,18 @@
+<h1>영화 리뷰 세부사항</h1>
+
+<h1>{{ movie.title }}</h1>
+<small>개봉년도: {{ movie.release }}</small>
+<small>주연: {{ movie.leadrole }}</small>
+<small>장르: {{ movie.genre }}</small>
+<small>별점: {{ movie.evaluation }}</small>
+<small>러닝타임: {{ movie.runningtime }}</small>
+<br />
+<p>{{ movie.review }}</p>
+<br />
+
+<a href="/movies/{{movie.id}}/update"> 수정하기 </a>
+
+<form action="/movies/{{movie.id}}/delete" method="post">
+  {% csrf_token %}
+  <input type="submit" value="삭제하기">
+</form>

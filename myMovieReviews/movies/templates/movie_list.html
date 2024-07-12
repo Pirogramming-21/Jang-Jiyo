@@ -1,28 +1,43 @@
 {% extends 'header.html' %}
 
 {% block content %}
-   <div class="grid_movies_container">
-      {% for movie in movies %}
-         <div class="movie">
-            <a href="/movies/{{movie.id}}"><h2>{{ movie.title }}</h2></a>
-            <p><span>개봉년도: </span>{{ movie.release }}</p>
-            {% if movie.genre == 'action' %}<p><span>장르: </span>액션</p>{% endif %}
-            {% if movie.genre == 'adventure' %}<p><span>장르: </span>모험</p>{% endif %}
-            {% if movie.genre == 'animation' %}<p><span>장르: </span>애니메이션</p>{% endif %}
-            {% if movie.genre == 'comedy' %}<p><span>장르: </span>코미디</p>{% endif %}
-            {% if movie.genre == 'crime' %}<p><span>장르: </span>범죄</p>{% endif %}
-            {% if movie.genre == 'documentary' %}<p><span>장르: </span>다큐멘터리</p>{% endif %}
-            {% if movie.genre == 'drama' %}<p><span>장르: </span>드라마</p>{% endif %}
-            {% if movie.genre == 'family' %}<p><span>장르: </span>가족</p>{% endif %}
-            {% if movie.genre == 'fantasy' %}<p><span>장르: </span>판타지</p>{% endif %}
-            {% if movie.genre == 'noir' %}<p><span>장르: </span>느와르</p>{% endif %}
-            {% if movie.genre == 'history' %}<p><span>장르: </span>역사</p>{% endif %}
-            {% if movie.genre == 'musical' %}<p><span>장르: </span>뮤지컬</p>{% endif %}
-            {% if movie.genre == 'horror' %}<p><span>장르: </span>공포</p>{% endif %}
-            {% if movie.genre == 'romance' %}<p><span>장르: </span>로맨스</p>{% endif %}
-            {% if movie.genre == 'sf' %}<p><span>장르: </span>공상과학</p>{% endif %}
-            <p><span>별점: </span>{{ movie.evaluation }}</p>
-         </div>
-      {% endfor %}
+   <div class="list_container">
+      <div class="sort_by">
+         <form action="/movies" method="get"></form>
+            <select name="sort_by">
+               <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title</option>
+               <option value="release" {% if current_sort == 'release' %}selected{% endif %}>Release Year</option>
+               <option value="genre" {% if current_sort == 'genre' %}selected{% endif %}>Genre</option>
+               <option value="evaluation" {% if current_sort == 'evaluation' %}selected{% endif %}>Evaluation</option>
+            </select>
+            <div class="order_save_btn">
+               <input type="submit" value="save"/>
+            </div>
+         </form>
+      </div>
+      <div class="grid_movies_container">
+         {% for movie in movies %}
+            <div class="movie">
+               <a href="/movies/{{movie.id}}"><h2>{{ movie.title }}</h2></a>
+               <p><span>개봉년도: </span>{{ movie.release }}</p>
+               {% if movie.genre == 'action' %}<p><span>장르: </span>액션</p>{% endif %}
+               {% if movie.genre == 'adventure' %}<p><span>장르: </span>모험</p>{% endif %}
+               {% if movie.genre == 'animation' %}<p><span>장르: </span>애니메이션</p>{% endif %}
+               {% if movie.genre == 'comedy' %}<p><span>장르: </span>코미디</p>{% endif %}
+               {% if movie.genre == 'crime' %}<p><span>장르: </span>범죄</p>{% endif %}
+               {% if movie.genre == 'documentary' %}<p><span>장르: </span>다큐멘터리</p>{% endif %}
+               {% if movie.genre == 'drama' %}<p><span>장르: </span>드라마</p>{% endif %}
+               {% if movie.genre == 'family' %}<p><span>장르: </span>가족</p>{% endif %}
+               {% if movie.genre == 'fantasy' %}<p><span>장르: </span>판타지</p>{% endif %}
+               {% if movie.genre == 'noir' %}<p><span>장르: </span>느와르</p>{% endif %}
+               {% if movie.genre == 'history' %}<p><span>장르: </span>역사</p>{% endif %}
+               {% if movie.genre == 'musical' %}<p><span>장르: </span>뮤지컬</p>{% endif %}
+               {% if movie.genre == 'horror' %}<p><span>장르: </span>공포</p>{% endif %}
+               {% if movie.genre == 'romance' %}<p><span>장르: </span>로맨스</p>{% endif %}
+               {% if movie.genre == 'sf' %}<p><span>장르: </span>공상과학</p>{% endif %}
+               <p><span>별점: </span>{{ movie.evaluation }}</p>
+            </div>
+         {% endfor %}
+      </div>
    </div>
 {% endblock %}

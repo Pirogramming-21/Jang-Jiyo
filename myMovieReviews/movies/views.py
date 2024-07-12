@@ -4,9 +4,15 @@ from .models import Movie
 
 # Create your views here.
 def movie_list(request):
-   movies = Movie.objects.all()
+   # default 정렬 기준: title
+   order_condition = request.GET.get("sort_by", 'title')
+   print(f"Sorting by: {order_condition}")  # 디버깅용
+
+   movies = Movie.objects.order_by(order_condition)
+   print(f"Number of movies: {movies.count()}")  # 디버깅용
    context = {
-      "movies": movies
+      "movies": movies,
+      "current_sort": order_condition,
    }
    return render(request, 'movie_list.html', context)
 

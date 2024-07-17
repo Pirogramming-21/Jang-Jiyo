@@ -1,0 +1,220 @@
+@import "./nomalize.css";
+
+body {
+   background-color: black;
+   color: white;
+}
+a {
+   text-decoration: none;
+   color: white;
+}
+
+/** header **/
+header {
+   display: flex;
+   flex-direction: row;
+   margin: 25px 0;
+   padding: 0 40px;
+   justify-content: space-between;
+   border-bottom: 1px solid rgba(211, 211, 211, .5);
+   align-items: center;
+   padding-bottom: 25px;
+}
+header a {
+   color: white;
+   text-decoration: none;
+   font-size: 15px;
+}
+
+.header_name span {
+   color: greenyellow;
+   font-weight: bold;
+   font-size: 20px;
+}
+.nav_bar {
+   display: flex;
+   flex-direction: row;
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   gap: 20px;
+}
+
+/** main **/
+main {
+   margin: 0 40px;
+}
+.main_container { 
+   background-color: rgba(211, 211, 211, .4);
+   padding: 30px 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.header {
+   text-align: center;
+}
+.header_title {
+   font-size: 20px;
+   color: greenyellow;
+   font-weight: bold;
+}
+.header_content {
+   font-size: 13px;
+}
+.btn-success {
+   margin-top: 15px;
+   border: .5px solid white;
+   background-color: transparent;
+   color: white;
+   border-radius: 30px;
+   padding: 5px 20px;
+   position: relative;
+   left: 35%;
+}
+.btn-success:hover {
+   cursor: pointer;
+}
+
+/** list **/
+.content-wrapper {
+   display: flex;
+   gap: 10px;
+   margin: 0 20px;
+   margin-top: 15px;
+   padding: 0 20px;
+   width: 90%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 15px;
+}
+.item {
+   background-color: rgba(255, 255, 255, .3);
+   padding: 20px;
+   color: black;
+}
+.item a {
+   text-decoration: none;
+   color: black;
+}
+.item img {
+   width: 100%;
+}
+.info h2 {
+   margin-bottom: 10px;
+}
+.info div {
+   height: 5px;
+   background-color: aqua;
+   margin-bottom: 20px;
+}
+.info form input {
+   background-color: transparent;
+   border: none;
+   font-size: 18px;
+}
+.tool, form span{
+   font-size: 15px;
+   margin: 15px 0;
+}
+/** register **/
+.register-wrapper, .update-wrapper {
+   margin-top: 15px;
+   font-size: 15px;
+}
+.register-wrapper div, .update-wrapper div {
+   margin-bottom: 10px;
+}
+/** detail **/
+.detail_container {
+   border: 1px solid white;
+   padding: 20px;
+   display: flex;
+   margin: 20px 0;
+   width: 80%;
+   font-size: 15px;
+}
+.detail_image {
+   width: 50%;
+   margin-right: 15px;
+   display: flex;
+}
+.detail_image img {
+   width: 100%;
+}
+form button, form a {
+   border: none;
+   border-radius: 10%;
+   font-size: 15px;
+   padding: 3px 7px;
+   text-decoration: none;
+   margin-right: 30px;
+}
+form button {
+   background-color: red;
+   color:white;
+}
+.btn_list {
+   background-color: white;
+   color: black;
+}
+.btn_update {
+   background-color: blue;
+   color: white;
+   margin-right: 0;
+}
+
+/** devtools **/
+.devtool-content-wrapper {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 20px;
+   width: 100%;
+}
+.devtool_item {
+   display: flex;
+   justify-content: flex-start;
+   background-color: transparent;
+   padding: 0 30px;
+   align-items: center;
+   width: 70%;
+   border-top: .5px solid white;
+   border-bottom: .5px solid white;
+   gap: 40px;
+   line-height: 13px;
+}
+.devtool_item a {
+   text-decoration: none;
+}
+.devtool_item p {
+   font-size: 12px;
+}
+.name {
+   width: 70px;
+}
+.kind {
+   width: 120px;
+}
+.name, .devtool_content {
+   color: black;
+}
+/** detail **/
+.devtool_detail_container {
+   border: .5px solid white;
+   width: 80%;
+   padding: 20px;
+   margin: 20px 0;
+}
+.devtool h1 {
+   margin: 0;
+}
+.devtool p {
+   font-size: 15px;
+}
+.idea {
+   font-size: 15px;
+}
+.idea p {
+   margin-bottom: 5px;
+}

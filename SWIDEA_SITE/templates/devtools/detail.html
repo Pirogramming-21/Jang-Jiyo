@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+  <title>DevTool Detail</title>
+{%endblock%}
+
+{% block content %}
+   <div class="header">
+      <div class="header_title">DevTool Detail</div>
+      <div class="header_content">개발툴 세부내용 페이지입니다. 자신이 다룰 수 있는 개발툴에 대한 상세내용을 확인해 보세요.</div>
+   </div>
+   <div class="devtool_detail_container">
+      <div class="devtool">
+         <h1 style="color: white; font-size: 40px">{{devtool.name}}</h1>
+         <p>{{devtool.kind}}</br>{{devtool.content}}</p>
+      </div>
+      <div class="idea">
+         <p>>만들 수 있는 SW 목록</p>
+         {% for idea in ideas %}
+            {{idea.title}}
+         {% endfor %}
+      </div>
+   </div>
+   <form action="{% url 'devtools:delete' devtool.pk %}" method="POST">
+      {%csrf_token%}
+      <button type="submit" class="btn btn-delete">삭제</button>
+      <a href="{% url 'devtools:list' %}" class="btn btn_list">목록</a>
+      <a href="{% url 'devtools:update' devtool.pk %}" class="btn btn_update">수정</a>
+   </form>
+{% endblock content %}

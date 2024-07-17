@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+  <title>Idea List</title>
+{%endblock%}
+
+{%block content%}
+   <div class="header">
+      <div class="header_title">Idea List</div>
+      <div class="header_content">나의 아이디어를 잊지 말고 기록해보세요</div>
+   </div>
+   <div class="sorting">
+      <form action="/">   
+      </form>
+   </div>
+   <div class="content-wrapper">
+      <!-- 글 목록 -->
+      {% for idea in ideas %}
+         <div class="item">
+            {% if idea.photo.url != null and idea.photo.url != '' %}
+               <img src="{{idea.photo.url}}" alt="대체텍스트">
+            {% else %}
+            {% endif %}
+            <div class="info">
+               <a href="{% url 'ideas:detail' idea.pk%}" class="title">
+                  <h2>{{idea.title}}</h2>
+               </a>
+               <div></div>
+               <p class="tool">예상 개발 툴: {{idea.devtool}}</p> 
+               <form method="post" action="{% url 'ideas:main' %}"> 
+                  {% csrf_token %}
+                  <input type="hidden" name="idea_id" value="{{idea.id}}">
+                  <span class="interest">아이디어 관심도:     
+                  <input class = 'interest_btn' type="submit" name="interest_plus" value="+" />
+                  {{idea.interest}}
+                  <input class = 'interest_btn' type="submit" name="interest_minus" value="-" />
+                  </span> 
+               </form>
+               </p>
+            </div>
+         </div>
+      {% endfor %}
+   </div>
+{%endblock%}

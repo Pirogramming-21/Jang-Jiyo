@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+  <title>DevTool Update</title>
+{%endblock%}
+
+{%block content%}
+   <div class="header">
+      <div class="header_title">DevTool update-wrapper</div>
+      <div class="header_content">개발툴 세부내용 수정 페이지입니다. 개발툴에 대해 수정사항이 있으면 고쳐보세요.</div>
+   </div>
+   <div class="update-wrapper">
+      <form
+      action="{% url 'devtools:update' pk %}"
+      method="post"
+      enctype="multipart/form-data"
+      >
+         {%csrf_token%}
+         <div class="name">
+            이름:</br>{{form.name}}
+         </div>
+         <div class="kind">
+            종류:</br>{{form.kind}}
+         </div>
+         <div class="devtool_content">
+            개발툴 설명:</br>{{form.content}}
+         </div>
+         <button class="btn btn-success">SUBMIT</button>
+      </form>
+   </div>
+{%endblock%}

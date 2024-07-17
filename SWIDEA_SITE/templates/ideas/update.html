@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+  <title>Idea Update</title>
+{%endblock%}
+
+{%block content%}
+   <div class="header">
+      <div class="header_title">Idea Update</div>
+      <div class="header_content">아이디어 세부내용 수정 페이지입니다. 아이디어를 구체화하거나 내용을 변경해 보세요.</div>
+   </div>
+   <div class="update-wrapper">
+      <form
+      action="{% url 'ideas:update' pk %}"
+      method="post"
+      enctype="multipart/form-data"
+      >
+         {%csrf_token%}
+         <div class="title">
+            아이디어명:</br>{{form.title}}
+         </div>
+         <div class="image">
+            Image:</br>{{form.photo}}
+         </div>
+         <div class="content">
+            아이디어 설명:</br>{{form.content}}
+         </div>
+         <div class="interest">
+            아이디어 관심도:</br>{{form.interest}}
+         </div>
+         <div class="devtool">
+            예상 개발툴:</br>{{form.devtool}}
+         </div>
+      <button class="btn btn-success">SUBMIT</button>
+      </form>
+   </div>
+{%endblock%}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+  <title>Idea Detail</title>
+{%endblock%}
+
+{% block content %}
+   <div class="header">
+      <div class="header_title">Idea Detail</div>
+      <div class="header_content">아이디어 세부내용 페이지입니다. 당신이 구현하려 한 아이디어들을 자세히 살펴보세요.</div>
+   </div>
+   <div class="detail_container">
+      <div class="detail_image">
+         {% if idea.photo.url != '' %}
+            <img src="{{idea.photo.url}}" alt="제품 이미지" />
+         {% else %}
+            <img src="{% static 'ideas/image/no_img.png' %}" alt="대체 텍스트" />
+         {% endif %}
+      </div>
+      <div class="detail_content">
+         <h1 style="color: white; font-size: 40px">{{idea.title}}</h1>
+         <p>1. 아이디어 관심도 </br>{{idea.interest}}</p>
+         <p>2. 예상 개발 툴 </br><a href="{% url 'devtools:detail' idea.devtool.pk %}">{{idea.devtool}}</a></p>
+         <p>3. 아이디어 설명 </br>{{idea.content}}</p>
+      </div>
+   </div>
+   <form action="{% url 'ideas:delete' idea.pk %}" method="POST">
+      {%csrf_token%}
+      <button type="submit" class="btn btn-delete">삭제</button>
+      <a href="{% url 'ideas:main' %}" class="btn btn_list">목록</a>
+      <a href="{% url 'ideas:update' idea.pk %}" class="btn btn_update">수정</a>
+   </form>
+{% endblock content %}

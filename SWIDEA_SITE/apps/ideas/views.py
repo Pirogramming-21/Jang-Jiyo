@@ -4,6 +4,18 @@ from .forms import IdeaForm
 
 # Create your views here.
 def main(request):
+   sort_by = request.GET.get('sort_by', '')
+   if sort_by == 'interest':
+      ideas = Idea.objects.all().order_by('-interest')
+   elif sort_by == 'title':
+      ideas = Idea.objects.all().order_by('title')
+   elif sort_by == 'created':
+      ideas = Idea.objects.all().order_by('id')
+   elif sort_by == 'latest':
+      ideas = Idea.objects.all().order_by('-id')
+   else:
+      ideas = Idea.objects.all()
+
    if request.method == 'POST':
       idea_id = request.POST.get('idea_id')
       idea = Idea.objects.get(id=idea_id)
@@ -15,8 +27,7 @@ def main(request):
       idea.save()
       return redirect('ideas:main')
 
-   ideas = Idea.objects.all()
-   ctx = {'ideas': ideas}
+   ctx = {'ideas': ideas, 'sort_by': sort_by}
    return render(request, 'ideas/list.html', ctx)
 
 def register(request):

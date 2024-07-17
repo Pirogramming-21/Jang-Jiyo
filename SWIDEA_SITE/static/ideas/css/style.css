@@ -88,6 +88,10 @@ main {
    grid-template-columns: 1fr 1fr 1fr 1fr;
    gap: 15px;
 }
+.sorting {
+   margin-top: 10px;
+   margin-left: 350px;
+}
 .item {
    background-color: rgba(255, 255, 255, .3);
    padding: 20px;
@@ -99,6 +103,15 @@ main {
 }
 .item img {
    width: 100%;
+}
+.fa-star {
+   position: absolute;
+}
+.empty-star {
+   color: black;
+}
+.yellow-star {
+   color: yellow;
 }
 .info h2 {
    margin-bottom: 10px;

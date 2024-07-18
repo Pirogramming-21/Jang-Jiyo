@@ -17,8 +17,8 @@ def register(request):
 
    form = DevToolForm(request.POST)
    if form.is_valid():
-      form.save()
-   return redirect('devtools:list')
+      devtool = form.save()
+   return redirect('devtools:detail', pk=devtool.pk)
 
 def detail(request, pk):
    devtool = DevTool.objects.get(id=pk)

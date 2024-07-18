@@ -44,8 +44,8 @@ def register(request):
       return render(request, 'ideas/register.html', ctx)
    form = IdeaForm(request.POST, request.FILES)
    if form.is_valid():
-      form.save()
-   return redirect('ideas:main')
+      idea = form.save()
+   return redirect('ideas:detail', pk=idea.pk)
 
 def detail(request, pk):
    idea = Idea.objects.get(id=pk)

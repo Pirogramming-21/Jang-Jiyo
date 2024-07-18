@@ -30,6 +30,13 @@ def main(request):
    ctx = {'ideas': ideas, 'sort_by': sort_by}
    return render(request, 'ideas/list.html', ctx)
 
+def toggle_star(request, pk):
+   idea = Idea.objects.get(id=pk)
+   ideastar, register = IdeaStar.objects.get(idea=idea)
+   ideastar.is_starred = not ideastar.is_starred
+   ideastar.save()
+   return redirect('ideas:main')
+
 def register(request):
    if request.method == "GET":
       form = IdeaForm()

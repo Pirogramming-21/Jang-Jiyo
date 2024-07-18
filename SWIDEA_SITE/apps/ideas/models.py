@@ -12,3 +12,7 @@ class Idea(models.Model):
 
    def __str__(self):
       return self.title
+
+class IdeaStar(models.Model):
+   idea = models.OneToOneField(Idea, on_delete=models.CASCADE)
+   is_starred = models.BooleanField(default=False)

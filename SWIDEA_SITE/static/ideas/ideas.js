@@ -1,6 +1,14 @@
-function toggleStar() {
-   const starElement = document.getElementById('star');
-   starElement.classList.toggle('yellow-star');
+function toggleStar(ideaId) {
+   const form = document.createElement('form');
+   form.method = 'post';
+   form.action = `{% url 'ideas:toggle_star' '' %}${ideaId}/`;
+   const csrfToken = document.createElement('input');
+   csrfToken.type = 'hidden';
+   csrfToken.name = 'csrfmiddlewaretoken';
+   csrfToken.value = '{{ csrf_token }}';
+   form.appendChild(csrfToken);
+   document.body.appendChild(form);
+   form.submit();
 }
 
 function sortList() {

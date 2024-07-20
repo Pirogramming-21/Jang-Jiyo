@@ -26,11 +26,7 @@
             {% if idea.photo.url != null and idea.photo.url != '' %}
                <img src="{{idea.photo.url}}" alt="대체텍스트">
             {% endif %}
-            {% if ideastar and ideastar.is_starred %}
-               <button class="star-button" onclick="toggleStar('{{idea.id}}')" style="color: yellow;"><i class="fa-solid fa-star"></i></button>
-            {% else %}
-               <button class="star-button" onclick="toggleStar('{{idea.id}}')" style="color: gray;"><i class="fa-solid fa-star"></i></button>
-            {% endif %}
+            <i class="fa-solid fa-star" style="color: gray"></i>
             <div class="info">
                <a href="{% url 'ideas:detail' idea.pk%}" class="title">
                   <h2>{{idea.title}}</h2>

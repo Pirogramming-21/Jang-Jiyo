@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>post_list</title>
+{% endblock %}
+
+{% block content %}
+   <div class="comment_container">
+      <div class="head">댓글</div>
+      <ul>
+         {% for comment in comments %}
+            <li>
+               {{comment.user}}: {{comment.text}}
+               <form action="{% url 'post:comment_delete' post.id comment.id %}" method="POST">
+                  {% csrf_token %}
+                  <input class="comment_delete_btn" type="submit" value="DELETE">
+               </form>
+            </li>
+         {% endfor %}
+      </ul>
+      <div class="create_comment">
+         <form action="{% url 'post:comment_create' post.id %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input class="comment_create_btn" type="submit" value="댓글달기">
+         </form>
+      </div>
+   </div>
+{% endblock content %}

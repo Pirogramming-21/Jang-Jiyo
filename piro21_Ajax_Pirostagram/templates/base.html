@@ -1,0 +1,35 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/post/style.css' %}">
+  {%block head%}
+
+  {% endblock %}
+</head>
+<body>
+   <header>
+      <div class="header_logo"><a href="/">Pirostagram</a></div>
+      {% if user.is_authenticated %}
+         <div class="header_new"><a href="{% url 'post:create' %}">게시물 등록</a></div>
+      {% endif %}
+   </header>
+   <main>
+      {% block content %}
+         
+      {% endblock content %}
+   </main>
+   <footer>
+      {% if user.is_authenticated %}
+         <div class="login_status">{{user.username}}님이 로그인 중..</di>
+         <a class="logout" href="{% url 'users:logout' %}">로그아웃</a>
+      {% else %}
+         <a class="signup" href="{% url 'users:signup' %}">회원가입</a>
+         <a class="login" href="{% url 'users:login' %}">로그인</a>
+      {% endif %}
+   </footer>
+   <script src="https://kit.fontawesome.com/20832c1291.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -7,23 +7,94 @@
 {% block content %}
    <div class="comment_container">
       <div class="head">댓글</div>
-      <ul>
+      <ul id="comment_list">
          {% for comment in comments %}
-            <li>
-               {{comment.user}}: {{comment.text}}
-               <form action="{% url 'post:comment_delete' post.id comment.id %}" method="POST">
-                  {% csrf_token %}
-                  <input class="comment_delete_btn" type="submit" value="DELETE">
-               </form>
+            <li id="comment-{{comment.id}}">
+               {{comment.user.username}}: {{comment.text}}
+               <button onclick="deleteComment({{post.id}}, {{comment.id}})">DELETE</button>
             </li>
          {% endfor %}
       </ul>
       <div class="create_comment">
-         <form action="{% url 'post:comment_create' post.id %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <input class="comment_create_btn" type="submit" value="댓글달기">
-         </form>
+         <input id="comment-input-{{post.id}}"type="text" size="10" placeholder="댓글달기"/>
+         <button id="comment_btn_{{post.id}}" data-post_id="{{post.id}}">댓글달기</button>
       </div>
    </div>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+      // 버튼에 대한 이벤트 리스너 추가
+      const buttons = document.querySelectorAll('button[id^="comment_btn_"]');
+
+      buttons.forEach(button => {
+         button.removeEventListener('click', handleClick); // 기존 리스너 제거
+         button.addEventListener('click', handleClick);   // 새로운 리스너 추가
+      });
+      function handleClick(event) {
+         const post_id = this.dataset.post_id;
+         createComment(post_id);
+      }
+
+      function createComment(post_id) {
+         const url = `/${post_id}/comment/create_ajax/`;
+
+         const requestCreate = new XMLHttpRequest(); // 매번 새로운 XMLHttpRequest 객체 생성
+         requestCreate.open("POST", url, true);
+         requestCreate.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+         );
+
+         const content = document.getElementById(`comment-input-${post_id}`).value.trim();
+         const data = JSON.stringify({ text: content });
+
+         requestCreate.onreadystatechange = function() {
+            if (requestCreate.readyState === XMLHttpRequest.DONE) {
+               if (requestCreate.status === 200) {
+                  const response = JSON.parse(requestCreate.responseText);
+                  const { id, text, user } = response;
+                  const commentList = document.getElementById('comment_list');
+
+                  if (commentList) {
+                     const newComment = document.createElement('li');
+                     newComment.id = `comment-${id}`;
+                     newComment.innerHTML = 
+                        `${user}: ${text} <button onclick="deleteComment(${post_id}, ${id})">DELETE</button>`;
+                     commentList.appendChild(newComment);
+
+                     document.getElementById(`comment-input-${post_id}`).value = '';
+                  } else {
+                     console.error('Element with id "comment_list" not found');
+                  }
+               }
+            }
+         };
+
+         requestCreate.send(data);
+      }
+   });
+
+   const deleteComment = (post_id, comment_id) => {
+      const requestDelete = new XMLHttpRequest();
+      const url = `/${post_id}/comment/${comment_id}/delete_ajax/`;
+      requestDelete.open("POST", url, true);
+      requestDelete.setRequestHeader(
+         "Content-Type",
+         "application/x-www-form-urlencoded"
+      );
+      requestDelete.send(JSON.stringify({post_id: post_id, comment_id: comment_id}));
+
+      requestDelete.onreadystatechange = () => {
+         if (requestDelete.status === 200) {
+            const response = JSON.parse(requestDelete.responseText);
+            if (response.success) {
+               const commentElement = document.getElementById(`comment-${comment_id}`);
+               commentElement.remove();
+            } else {
+               console.error('댓글 삭제 실패');
+            }
+         }   
+      };
+   };
+   
+</script>
 {% endblock content %}

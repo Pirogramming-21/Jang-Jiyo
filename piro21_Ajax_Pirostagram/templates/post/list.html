@@ -18,31 +18,57 @@
                {% endif %}
                <div>
                   <button class="comment"><a href="{% url 'post:comment' post.pk%}">댓글</a></button>
-                  <button class="like_btn" onclick="post_like(this.id)"><i class="fa-solid fa-heart"></i>{{post.like.count}}</button>
+                  <button class="like_btn" onclick="clickLike" data-post_id="{{post.id}}">
+                     <i class="fa-solid fa-heart"></i>
+                     <span>{{post.like.count}}</span>
+                  </button>
                </div>
                <p class="content">{{post.content}}</p>
             </div>
          {% endfor %}
       {% endif %}
    </div>
-{% endblock %}
-
 <script>
-   const requestLike = new XMLHttpRequest();
-   const onClickLike = (id, type) => {
-      const url = 'post_like/';
-      requestLike.open("POST", url, true);
-      requestLike.setRequestHeader (
-         "Content-Type",
-         "application/x-www-form-urlencoded"
-      );
-      requestLike.send(JSON.stringify({id: id, type: type}));
-   }
-   requestLike.onreadystatechange = () => {
-      if (requestLike.readyStat == XMLHttpRequest.DONE) {
-         if(requestLike.status < 400) {
-            const {id, type} = JSON.parse()
+   document.addEventListener("DOMContentLoaded", function() {
+      const buttons = document.querySelectorAll('button.like_btn');
+
+      buttons.forEach(button => {
+         button.addEventListener('click', function() {
+               const post_id = this.dataset.post_id;
+               clickLike(post_id, this);
+         });
+      });
+
+      function clickLike(post_id, button) {
+         const requestLike = new XMLHttpRequest();
+         const url = `/${post_id}/like/`;
+         requestLike.open("POST", url, true);
+         requestLike.setRequestHeader (
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+         );
+         requestLike.send();
+         
+         requestLike.onreadystatechange = () => {
+            if (requestLike.status < 400) {
+               const response = JSON.parse(requestLike.responseText);
+               const likeCount = response.like_count;
+               const liked = response.liked;
+
+               const heart = button.querySelector('i');
+               if (liked) {
+                  button.classList.add('liked');
+                  heart.style.color = 'red';
+               } else {
+                  button.classList.remove('liked');
+                  heart.style.color = 'black';
+               }
+               button.querySelector('span').textContent = likeCount;
+            }
          }
       }
-   }
+   });
+   
+   
 </script>
+{% endblock %}
